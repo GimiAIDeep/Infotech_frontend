@@ -1,0 +1,316 @@
+/* =========================
+   RESET & BASE
+   ========================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; }
+body {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+  background: #FAFAFA;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.4;
+}
+
+/* =========================
+   LAYOUT CONTAINER
+   - keeps widths consistent with Figma
+   ========================= */
+.container {
+  width: 90%;
+  max-width: 1180px; /* matches design canvas width feel */
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER / NAVBAR
+   Precise spacing and sizes (pixels)
+   ========================= */
+.site-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 72px; /* pixel-precise nav height */
+  justify-content: space-between;
+}
+
+/* brand */
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-logo { width:44px; height:44px; border-radius:6px; object-fit:cover; }
+.company-name { display:block; font-weight:700; font-size:16px; letter-spacing:0.2px; }
+.tagline { display:block; font-size:11px; color:#888; margin-top:2px; }
+
+/* desktop nav */
+.nav-desktop { flex: 1; margin-left: 36px; }
+.nav-list { list-style:none; display:flex; gap:28px; align-items:center; }
+.nav-list a {
+  text-decoration:none;
+  color:#222;
+  font-weight:500;
+  font-size:15px;
+  padding:8px 0;
+}
+
+/* CTA on right */
+.btn-quote {
+  background:#FF2D55; /* pink-red from design */
+  color:#fff;
+  padding:10px 18px;
+  border-radius:20px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  box-shadow: 0 4px 12px rgba(255,45,85,0.12);
+}
+
+/* =========================
+   MOBILE MENU (checkbox hack)
+   ========================= */
+#menu-toggle { display:none; }
+.menu-icon {
+  display:none; /* shown in mobile */
+  width:36px; height:36px; cursor:pointer;
+  align-items:center; justify-content:center;
+}
+.menu-icon span { display:block; height:2px; width:18px; background:#333; margin:4px 0; border-radius:2px; }
+
+/* mobile nav panel */
+.nav-mobile {
+  position: fixed;
+  top: 72px;
+  right: -320px;
+  width: 320px;
+  height: calc(100vh - 72px);
+  background: linear-gradient(180deg, #FFEFF3 0%, #FFDDE6 100%);
+  box-shadow: -12px 0 24px rgba(0,0,0,0.12);
+  padding: 28px;
+  transition: right 240ms ease;
+  z-index: 60;
+}
+.nav-mobile ul { list-style:none; display:flex; flex-direction:column; gap:18px; margin-bottom:18px; }
+.nav-mobile a { color:#111; text-decoration:none; font-weight:600; font-size:16px; }
+.btn-cta-mobile {
+  display:inline-block;
+  margin-top:16px;
+  background:#FF2D55;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:18px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* When checkbox checked -> slide menu in */
+#menu-toggle:checked ~ .nav-mobile {
+  right: 0;
+}
+
+/* =========================
+   HERO SECTION
+   - Pixel values chosen to match Figma: spacing, fonts, sizes
+   ========================= */
+.hero {
+  background: linear-gradient(180deg, #FFE8EC 0%, #FFE8EC 100%);
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 520px; /* right column fixed-ish like design */
+  gap: 48px;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* LEFT: text block */
+.hero-left { max-width: 640px; }
+.hero-heading {
+  font-weight:800;
+  font-size:48px;          /* pixel-perfect heading size */
+  line-height:1.02;        /* tight line-height like Figma */
+  color:#111;
+  margin-bottom:18px;
+  letter-spacing: -0.4px;
+}
+.hero-left .accent {
+  color:#FF2D55;           /* pink-red accent */
+  text-decoration: underline 4px rgba(255,45,85,0.12);
+  text-underline-offset:8px;
+  padding-right:6px;
+  font-weight:800;
+}
+.hero-sub {
+  font-size:15px;
+  color:#5b5b5b;
+  max-width:520px;
+  margin-bottom:22px;
+}
+
+/* CTA buttons */
+.hero-ctas { display:flex; gap:14px; align-items:center; }
+.btn-outline {
+  border:2px solid #FF2D55;
+  color:#FF2D55;
+  padding:10px 18px;
+  border-radius:28px;
+  text-decoration:none;
+  font-weight:700;
+  background: #fff;
+  font-size:13px;
+}
+.btn-primary {
+  background:#FF2D55;
+  color:#fff;
+  padding:10px 20px;
+  border-radius:28px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:13px;
+  box-shadow: 0 8px 20px rgba(255,45,85,0.12);
+}
+
+/* RIGHT: image column */
+.hero-right { position:relative; display:flex; justify-content:center; align-items:center; }
+.hero-image {
+  width: 420px;            /* exact visual width for pixel similarity */
+  height: auto;
+  border-radius: 999px;    /* circular crop feel */
+  object-fit:cover;
+  display:block;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+}
+
+/* floating badges — size & position chosen to match Figma */
+.badge {
+  position: absolute;
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+}
+.badge.rating {
+  left: -18px;
+  top: 14%;
+  min-width: 120px;
+  flex-direction: column;
+  align-items:flex-start;
+  padding:12px 14px;
+}
+.rating-value {
+  font-size:20px;
+  color:#12A67A;
+}
+.rating-text {
+  font-size:12px;
+  color:#333;
+  font-weight:600;
+}
+
+/* resume count badge */
+.badge.resumes {
+  right: -18px;
+  bottom: 6%;
+  padding: 12px 14px;
+  align-items:center;
+  flex-direction:row;
+}
+.badge.resumes .icon { font-size:18px; margin-right:8px; }
+.badge.resumes .count { font-size:18px; color:#111; margin-right:6px; }
+.badge.resumes .count-text { font-size:12px; color:#666; font-weight:600; }
+
+/* =========================
+   FEATURES SECTION
+   - 4 columns on desktop, fluid to 1 on small screens
+   ========================= */
+.features { padding: 56px 0; background: #fff; }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  align-items:stretch;
+}
+.feature {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+  text-align: left;
+}
+.feature-icon { width:56px; height:56px; border-radius:10px; object-fit:cover; margin-bottom:12px; }
+.feature-title { font-size:16px; color:#FF2D55; margin-bottom:8px; font-weight:700; }
+.feature-desc { font-size:14px; color:#6b6b6b; }
+
+/* =========================
+   FOOTER
+   ========================= */
+.site-footer { border-top:1px solid rgba(0,0,0,0.04); background:#fff; padding:18px 0; margin-top:36px; }
+.footer-inner { display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#666; }
+
+/* =========================
+   RESPONSIVE RULES
+   - tablet and mobile breakpoints chosen to match Figma's 1440px, 768px, 375px views
+   ========================= */
+
+/* <= 1024px (tablet-ish): tighten layout */
+@media (max-width: 1024px) {
+  .container { max-width: 960px; }
+  .hero-inner { grid-template-columns: 1fr 420px; gap: 28px; }
+  .hero-heading { font-size:40px; }
+  .hero-image { width:360px; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* <= 768px (mobile): single column stack and mobile nav shows */
+@media (max-width: 768px) {
+  .nav-desktop { display:none; }
+  .btn-quote { display:none; }
+  .menu-icon { display:flex; }
+  .header-inner { height:64px; gap:8px; }
+
+  .container { width:92%; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align:center;
+    gap:22px;
+  }
+  .hero-left { order:2; }
+  .hero-right { order:1; }
+
+  .hero-heading {
+    font-size:32px;      /* adjusted to keep pixel-appropriate on mobile */
+    line-height:1.05;
+  }
+  .hero-sub { font-size:14px; margin: 12px auto 18px; max-width: 420px; }
+
+  .hero-image {
+    width:280px;
+    border-radius: 12px; /* not too circular on small screen */
+  }
+
+  /* badges reposition for mobile */
+  .badge.rating { left: 10%; top: -8%; transform: translateY(-6px); }
+  .badge.resumes { right: 10%; bottom: -6%; transform: translateY(6px); }
+
+  .features-grid { grid-template-columns: 1fr; gap:16px; }
+}
+
+/* <= 420px very small phones */
+@media (max-width: 420px) {
+  .hero-heading { font-size:28px; }
+  .hero-image { width: 220px; }
+  .brand-logo { width:36px; height:36px; }
+  .menu-icon { width:32px; height:32px; }
+  .nav-mobile { width: 280px; }
+}
